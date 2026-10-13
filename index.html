@@ -39,16 +39,26 @@ footer{font-size:.9rem;opacity:.9;line-height:1.6}footer small{display:block;opa
 .rp{position:fixed;width:20px;height:20px;margin:-10px;border-radius:50%;border:2px solid #D4AF37;pointer-events:none;animation:rp .7s ease-out forwards}
 @keyframes rp{to{transform:scale(9);opacity:0}}
 .card{transition:transform .2s ease-out}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(165deg,#b48ad8 0%,#d79a4a 60%,#f0c060 110%);opacity:0;animation:warm 7s ease-in-out infinite}
+@keyframes warm{50%{opacity:.45}}
+.eyes{position:relative}.dust{position:absolute;inset:-10px 0;pointer-events:none;opacity:.55;background-image:radial-gradient(1.5px 1.5px at 10% 30%,#fff6d0,transparent),radial-gradient(1px 1px at 30% 70%,#ffe08a,transparent),radial-gradient(1.5px 1.5px at 55% 20%,#fff,transparent),radial-gradient(1px 1px at 75% 60%,#ffd27a,transparent),radial-gradient(1.5px 1.5px at 90% 35%,#fff6d0,transparent);background-size:120px 80px;animation:drift 14s linear infinite}
+@keyframes drift{to{background-position:120px -80px}}
+.eyes svg{position:relative}
+.glint{animation:gl 3s ease-in-out infinite}@keyframes gl{50%{opacity:.2}}
+.rise{position:relative;animation:rise 6s ease-in-out infinite}
+.rise:before{content:"";position:absolute;left:50%;bottom:-6px;width:120px;height:30px;margin-left:-60px;border-radius:50%;background:radial-gradient(rgba(255,120,30,.75),transparent 70%);animation:emb 3s ease-in-out infinite}
+@keyframes rise{0%,100%{transform:translateY(6px)}50%{transform:translateY(-6px)}}
+@keyframes emb{50%{opacity:.4;transform:scaleX(.8)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.card{transition:none}}
 </style></head><body><main class="card" id="c">
 <h1><span class="star">✦</span> PULSE REVEAL</h1>
-<svg viewBox="0 0 300 100" aria-hidden="true"><defs><radialGradient id="i"><stop offset="0" stop-color="#ffe08a"/><stop offset=".6" stop-color="#FFB020"/><stop offset="1" stop-color="#b8670a"/></radialGradient></defs>
+<div class="eyes"><div class="dust"></div><svg viewBox="0 0 300 100" aria-hidden="true"><defs><radialGradient id="i"><stop offset="0" stop-color="#ffe08a"/><stop offset=".6" stop-color="#FFB020"/><stop offset="1" stop-color="#b8670a"/></radialGradient></defs>
 <g><path d="M20 50Q75 5 130 50Q75 95 20 50Z" fill="url(#i)" stroke="#2a1440" stroke-width="3"/><ellipse class="pupil" cx="75" cy="50" rx="7" ry="30" fill="#120612"/><circle cx="85" cy="38" r="3" fill="#fff" opacity=".8"/></g>
-<g><path d="M170 50Q225 5 280 50Q225 95 170 50Z" fill="url(#i)" stroke="#2a1440" stroke-width="3"/><ellipse class="pupil" cx="225" cy="50" rx="7" ry="30" fill="#120612"/><circle cx="235" cy="38" r="3" fill="#fff" opacity=".8"/></g></svg>
-<svg class="phx" viewBox="0 0 200 120" aria-hidden="true"><defs><linearGradient id="f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff4500"/><stop offset=".5" stop-color="#ff8c1a"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs>
+<g><path d="M170 50Q225 5 280 50Q225 95 170 50Z" fill="url(#i)" stroke="#2a1440" stroke-width="3"/><ellipse class="pupil" cx="225" cy="50" rx="7" ry="30" fill="#120612"/><circle cx="235" cy="38" r="3" fill="#fff" opacity=".8"/></g><g class="glint" fill="#fff3c4" opacity=".7"><path d="M60 40l6-8 4 10z"/><path d="M84 58l8 2-5 7z"/><path d="M210 40l6-8 4 10z"/><path d="M234 58l8 2-5 7z"/></g></svg></div>
+<div class="rise"><svg class="phx" viewBox="0 0 200 120" aria-hidden="true"><defs><linearGradient id="f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff4500"/><stop offset=".5" stop-color="#ff8c1a"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs>
 <g class="wl"><path d="M100 60C80 30 45 15 10 20C35 30 45 45 50 55C35 50 25 52 15 58C40 62 70 70 100 70Z" fill="url(#f)"/></g>
 <g class="wr"><path d="M100 60C120 30 155 15 190 20C165 30 155 45 150 55C165 50 175 52 185 58C160 62 130 70 100 70Z" fill="url(#f)"/></g>
-<path d="M100 40C108 40 110 50 106 62L112 95Q100 110 88 95L94 62C90 50 92 40 100 40Z" fill="url(#f)"/><circle cx="100" cy="34" r="7" fill="#ffb020"/><path d="M98 30L100 18L102 30Z" fill="#D4AF37"/></svg>
+<path d="M100 40C108 40 110 50 106 62L112 95Q100 110 88 95L94 62C90 50 92 40 100 40Z" fill="url(#f)"/><circle cx="100" cy="34" r="7" fill="#ffb020"/><path d="M98 30L100 18L102 30Z" fill="#D4AF37"/></svg></div>
 <div id="t" aria-live="polite">--:--:--</div>
 <div class="rv">Wed Oct 14 · 11:11 AM PT</div>
 <footer>Wednesday, October 14 · 11:11 AM PT<small>Soft magic, built to last. 7</small></footer>
