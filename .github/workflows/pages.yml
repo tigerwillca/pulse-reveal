@@ -1,15 +1,13 @@
 name: pages
 on: {push: {branches: [main]}, workflow_dispatch: {}}
-permissions: {contents: read, pages: write, id-token: write}
+permissions: {contents: write}
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment: {name: github-pages}
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir site && cp index.html site/ && base64 -d og.b64 > site/og.png && touch site/.nojekyll
-      - uses: actions/configure-pages@v5
-        with: {enablement: true}
-      - uses: actions/upload-pages-artifact@v3
-        with: {path: site}
-      - uses: actions/deploy-pages@v4
+      - run: |
+          mkdir site && cp index.html site/ && base64 -d og.b64 > site/og.png && touch site/.nojekyll
+          cd site && git init -b gh-pages && git add -A
+          git -c user.name=pages -c user.email=pages@users.noreply.github.com commit -m site
+          git push -f https://x-access-token:${{ github.token }}@github.com/${{ github.repository }} gh-pages
