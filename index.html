@@ -45,30 +45,40 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:lin
 @keyframes drift{to{background-position:120px -80px}}
 .eyes svg{position:relative}
 .glint{animation:gl 3s ease-in-out infinite}@keyframes gl{50%{opacity:.2}}
+.swirl{position:absolute;left:50%;top:50%;width:260px;height:260px;margin:-130px;pointer-events:none;opacity:.35;border-radius:50%;filter:blur(1.5px);
+background-image:radial-gradient(2px 2px at 50% 6%,#e6dcff,transparent),radial-gradient(2px 2px at 92% 40%,#D4AF37,transparent),radial-gradient(1.5px 1.5px at 75% 88%,#c9c2e0,transparent),radial-gradient(2px 2px at 20% 85%,#ffd27a,transparent),radial-gradient(1.5px 1.5px at 8% 38%,#b9a2ff,transparent),radial-gradient(1.5px 1.5px at 35% 15%,#ffe08a,transparent),radial-gradient(1.5px 1.5px at 65% 12%,#ddd,transparent);animation:orb 8s linear infinite}
+@keyframes orb{to{transform:rotate(360deg)}}
+.zone{position:relative}
 .rise{position:relative;animation:rise 6s ease-in-out infinite}
 .rise:before{content:"";position:absolute;left:50%;bottom:-6px;width:120px;height:30px;margin-left:-60px;border-radius:50%;background:radial-gradient(rgba(255,120,30,.75),transparent 70%);animation:emb 3s ease-in-out infinite}
 @keyframes rise{0%,100%{transform:translateY(6px)}50%{transform:translateY(-6px)}}
 @keyframes emb{50%{opacity:.4;transform:scaleX(.8)}}
 #intro{position:fixed;inset:0;z-index:9;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(24,10,36,.92);transition:opacity .6s}
 #intro.off{opacity:0;pointer-events:none}
+.tb{display:none;position:relative;background:#3a3a3e;border-radius:22px;padding:14px 18px;box-shadow:0 0 40px rgba(255,176,32,.35);animation:tbg 2s ease-in-out infinite}
+.tb:after{content:"";position:absolute;left:-4px;bottom:-4px;width:14px;height:14px;border-radius:50%;background:#3a3a3e}
+.tb b{display:inline-block;width:11px;height:11px;margin:0 4px;border-radius:50%;background:#8e8e93;animation:dot 1.2s ease-in-out infinite}
+.tb b:nth-child(2){animation-delay:.2s}.tb b:nth-child(3){animation-delay:.4s}
+@keyframes dot{30%{background:#e5e5ea;transform:translateY(-3px)}}
+@keyframes tbg{50%{box-shadow:0 0 60px rgba(255,176,32,.6)}}
 .sp{position:relative;width:44px;height:44px;animation:spin 1s steps(12) infinite}
 .sp i{position:absolute;left:20px;top:2px;width:4px;height:12px;border-radius:2px;background:#007AFF;transform-origin:2px 20px;clip-path:polygon(15% 0,85% 0,100% 100%,0 100%)}
 @keyframes spin{to{transform:rotate(360deg)}}
 #it{color:#D4AF37;font-weight:700;font-size:clamp(1.2rem,6vw,1.7rem);letter-spacing:.06em;text-shadow:0 0 14px rgba(212,175,55,.9);min-height:1.5em;margin-top:18px}
 #pc{position:fixed;inset:0;z-index:10;pointer-events:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.card{transition:none}}
-</style></head><body><div id="intro"><div class="sp" id="sp"></div><div id="it"></div></div><canvas id="pc"></canvas>
+</style></head><body><div id="intro"><div class="tb" id="tb"><b></b><b></b><b></b></div><div class="sp" id="sp"></div><div id="it"></div></div><canvas id="pc"></canvas>
 <main class="card" id="c">
 <h1 id="h1"><span class="star">✦</span> PULSE REVEAL</h1>
 <div class="eyes"><div class="dust"></div><svg viewBox="0 0 300 100" aria-hidden="true"><defs><radialGradient id="i"><stop offset="0" stop-color="#ffe08a"/><stop offset=".6" stop-color="#FFB020"/><stop offset="1" stop-color="#b8670a"/></radialGradient></defs>
 <g><path d="M20 50Q75 5 130 50Q75 95 20 50Z" fill="url(#i)" stroke="#2a1440" stroke-width="3"/><ellipse class="pupil" cx="75" cy="50" rx="7" ry="30" fill="#120612"/><circle cx="85" cy="38" r="3" fill="#fff" opacity=".8"/></g>
 <g><path d="M170 50Q225 5 280 50Q225 95 170 50Z" fill="url(#i)" stroke="#2a1440" stroke-width="3"/><ellipse class="pupil" cx="225" cy="50" rx="7" ry="30" fill="#120612"/><circle cx="235" cy="38" r="3" fill="#fff" opacity=".8"/></g><g class="glint" fill="#fff3c4" opacity=".7"><path d="M60 40l6-8 4 10z"/><path d="M84 58l8 2-5 7z"/><path d="M210 40l6-8 4 10z"/><path d="M234 58l8 2-5 7z"/></g></svg></div>
-<div class="rise"><svg class="phx" viewBox="0 0 200 120" aria-hidden="true"><defs><linearGradient id="f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff4500"/><stop offset=".5" stop-color="#ff8c1a"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs>
+<div class="zone"><div class="swirl"></div><div class="rise"><svg class="phx" viewBox="0 0 200 120" aria-hidden="true"><defs><linearGradient id="f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff4500"/><stop offset=".5" stop-color="#ff8c1a"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs>
 <g class="wl"><path d="M100 60C80 30 45 15 10 20C35 30 45 45 50 55C35 50 25 52 15 58C40 62 70 70 100 70Z" fill="url(#f)"/></g>
 <g class="wr"><path d="M100 60C120 30 155 15 190 20C165 30 155 45 150 55C165 50 175 52 185 58C160 62 130 70 100 70Z" fill="url(#f)"/></g>
 <path d="M100 40C108 40 110 50 106 62L112 95Q100 110 88 95L94 62C90 50 92 40 100 40Z" fill="url(#f)"/><circle cx="100" cy="34" r="7" fill="#ffb020"/><path d="M98 30L100 18L102 30Z" fill="#D4AF37"/></svg></div>
 <div id="t" aria-live="polite">--:--:--</div>
-<div class="rv">Wed Oct 14 · 11:11 AM PT</div>
+<div class="rv">Wed Oct 14 · 11:11 AM PT</div></div>
 <footer>Wednesday, October 14 · 11:11 AM PT<small>Soft magic, built to last. 7</small></footer>
 </main><script>
 var T=Date.parse("2026-10-14T18:11:00Z"),e=document.getElementById("t");
@@ -86,13 +96,18 @@ for(var k=0;k<12;k++){var s=document.createElement("i");s.style.transform="rotat
 var PATHS=["M100 60C80 30 45 15 10 20C35 30 45 45 50 55C35 50 25 52 15 58C40 62 70 70 100 70Z","M100 60C120 30 155 15 190 20C165 30 155 45 150 55C165 50 175 52 185 58C160 62 130 70 100 70Z","M100 40C108 40 110 50 106 62L112 95Q100 110 88 95L94 62C90 50 92 40 100 40Z"];
 function targets(n){var r=ph.getBoundingClientRect(),o=document.createElement("canvas");o.width=200;o.height=120;var g=o.getContext("2d");PATHS.forEach(function(p){g.fill(new Path2D(p))});g.beginPath();g.arc(100,34,7,0,7);g.fill();
 var d=g.getImageData(0,0,200,120).data,a=[];for(var y=0;y<120;y+=2)for(var X=0;X<200;X+=2)if(d[(y*200+X)*4+3])a.push([r.left+X*r.width/200,r.top+y*r.height/120]);var t=[];for(var i=0;i<n;i++)t.push(a[Math.floor(Math.random()*a.length)]);return t}
-function run(){if(busy)return;busy=1;cv.width=innerWidth;cv.height=innerHeight;I.classList.remove("off");sp.style.display="block";it.textContent="";
-setTimeout(function(){sp.style.display="none";var i=0,ty=setInterval(function(){it.textContent=MSG.slice(0,++i);if(i>=MSG.length){clearInterval(ty);setTimeout(burst,600)}},55)},1700)}
-function burst(){var r=it.getBoundingClientRect(),o=document.createElement("canvas");o.width=Math.ceil(r.width);o.height=Math.ceil(r.height);var g=o.getContext("2d"),cs=getComputedStyle(it);g.font=cs.fontWeight+" "+cs.fontSize+" "+cs.fontFamily;g.textBaseline="middle";g.fillText(MSG,0,o.height/2);
+/* typingBubble(ms): shows the iMessage-style three-dot bubble for ms, resolves after. */
+window.typingBubble=function(ms){var b=document.getElementById("tb");b.style.display="block";return new Promise(function(r){setTimeout(function(){b.style.display="none";r()},ms||1600)})};
+/* iosSpinnerReveal(msg,ms): 12-spoke spinner for ms, then types msg, then dissolves its letters into sparks that assemble on .phx. */
+window.iosSpinnerReveal=function(msg,ms){MSG=msg||MSG;return new Promise(function(done){sp.style.display="block";it.textContent="";
+setTimeout(function(){sp.style.display="none";var i=0,ty=setInterval(function(){it.textContent=MSG.slice(0,++i);if(i>=MSG.length){clearInterval(ty);setTimeout(function(){burst(done)},600)}},55)},ms||1700)})};
+function run(){if(busy)return;busy=1;cv.width=innerWidth;cv.height=innerHeight;I.classList.remove("off");sp.style.display="none";it.textContent="";
+typingBubble(1600).then(function(){return iosSpinnerReveal(MSG,1700)}).then(function(){busy=0})}
+function burst(done){var r=it.getBoundingClientRect(),o=document.createElement("canvas");o.width=Math.ceil(r.width);o.height=Math.ceil(r.height);var g=o.getContext("2d"),cs=getComputedStyle(it);g.font=cs.fontWeight+" "+cs.fontSize+" "+cs.fontFamily;g.textBaseline="middle";g.fillText(MSG,0,o.height/2);
 var d=g.getImageData(0,0,o.width,o.height).data,P=[];for(var y=0;y<o.height;y+=3)for(var X=0;X<o.width;X+=3)if(d[(y*o.width+X)*4+3]>128)P.push({x:r.left+X,y:r.top+y});
 var T=targets(P.length);P.forEach(function(p,i){p.sx=p.x;p.sy=p.y;p.tx=T[i][0];p.ty=T[i][1];p.d=Math.random()*.3});it.textContent="";I.classList.add("off");
-var t0=performance.now();(function f(n){var t=(n-t0)/1800;x.clearRect(0,0,cv.width,cv.height);P.forEach(function(p){var k=Math.min(1,Math.max(0,(t-p.d)/(1-.3))),e=1-Math.pow(1-k,3),w=Math.sin(k*Math.PI)*40;
+var t0=performance.now(),sf=setTimeout(function(){P=[];x.clearRect(0,0,cv.width,cv.height);done&&done();done=0},2600);(function f(n){var t=(n-t0)/1800;x.clearRect(0,0,cv.width,cv.height);P.forEach(function(p){var k=Math.min(1,Math.max(0,(t-p.d)/(1-.3))),e=1-Math.pow(1-k,3),w=Math.sin(k*Math.PI)*40;
 x.fillStyle=k<1?"hsl("+(20+k*25)+",100%,"+(55+k*10)+"%)":"#D4AF37";x.globalAlpha=t>1.1?Math.max(0,1-(t-1.1)*3):1;x.fillRect(p.sx+(p.tx-p.sx)*e+w*Math.sin(p.d*40),p.sy+(p.ty-p.sy)*e-w,2,2)});
-if(t<1.45)requestAnimationFrame(f);else{x.clearRect(0,0,cv.width,cv.height);busy=0}})(t0)}
+if(t<1.45)requestAnimationFrame(f);else{clearTimeout(sf);x.clearRect(0,0,cv.width,cv.height);done&&done();done=0}})(t0)}
 if(rm){I.classList.add("off")}else{run();setInterval(run,90000);document.getElementById("h1").addEventListener("click",run)}})();
 </script></body></html>
