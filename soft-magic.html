@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:," />
+<title>Soft Magic · Soft7</title>
+<meta name="description" content="The home of every Soft7 project. Pulse and soft magic." />
+<style>
+:root{color-scheme:dark;--lime:#CCFF00;--gold:#E6B85C;--gold-hi:#F6DFA0;--gold-glow:rgba(230,184,92,.35);--gold-soft:rgba(230,184,92,.14);--ember:#ff7a2a;--muted:#a79bbd;--beat:5.6s}
+*{box-sizing:border-box}
+html,body{margin:0;background:#06040c;color:#ece6f6;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+body{min-height:100vh;overflow-x:hidden;transition:opacity .6s ease,filter .6s ease;}
+a,button{cursor:inherit}
+body.arriving,body.leaving{opacity:0;filter:blur(8px)}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+.aura{position:fixed;inset:-20%;z-index:0;pointer-events:none;background:radial-gradient(ellipse 45% 35% at 50% 30%,rgba(255,122,42,.16),transparent 70%),radial-gradient(ellipse 50% 40% at 50% 80%,rgba(204,255,0,.05),transparent 70%);animation:breath var(--beat) ease-in-out infinite}
+@keyframes breath{0%,100%{opacity:.55;transform:scale(1)}45%{opacity:1;transform:scale(1.04)}}
+#trail{position:fixed;left:0;top:0;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;pointer-events:none;z-index:20;background:radial-gradient(circle,rgba(255,170,80,.55),rgba(255,122,42,0) 70%);mix-blend-mode:screen;opacity:0;transition:opacity .4s}
+main{position:relative;z-index:2;width:min(100% - 2rem,68rem);margin:0 auto;padding:9vh 0 4rem;text-align:center}
+header{position:relative}
+.wing{display:block;margin:0 auto -1.2rem;width:min(420px,90%);height:auto;opacity:.22;animation:breath var(--beat) ease-in-out infinite}
+.back{position:fixed;top:1rem;left:1rem;z-index:5;color:var(--muted);text-decoration:none;font:.75rem ui-monospace,Menlo,monospace;letter-spacing:.12em}
+.back:hover{color:var(--gold-hi)}
+h1{margin:.4rem 0 .4rem;font-weight:500;font-size:clamp(2.2rem,8vw,4.2rem);letter-spacing:-.03em;color:var(--gold);animation:glowtext var(--beat) ease-in-out infinite}
+@keyframes glowtext{0%,100%{text-shadow:0 0 18px rgba(230,184,92,.18)}45%{text-shadow:0 0 38px rgba(230,184,92,.55)}}
+.tag{color:var(--muted);letter-spacing:.14em;font-size:.9rem;margin:0 0 3rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem;text-align:left}
+.p{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid rgba(230,184,92,.2);border-radius:16px;background:rgba(14,9,26,.72);overflow:hidden;transition:border-color .4s,box-shadow .4s,transform .4s}
+.p:hover,.p:focus-visible{border-color:var(--gold-glow);box-shadow:0 0 34px var(--gold-soft);transform:translateY(-3px);outline:none}
+.art{position:relative;aspect-ratio:4/3;background:#0b0716;overflow:hidden}
+.art img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;transition:filter .6s}
+.p:hover .art img{filter:brightness(1.08) drop-shadow(0 0 12px rgba(255,170,80,.6))}
+/* eye + whisker light-ups */
+.art::before,.art::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .7s;mix-blend-mode:screen}
+.art::before{background:radial-gradient(circle at 41% 36%,rgba(255,200,90,.75),transparent 5%),radial-gradient(circle at 59% 36%,rgba(255,200,90,.75),transparent 5%),radial-gradient(circle at 41% 36%,rgba(255,140,40,.35),transparent 12%),radial-gradient(circle at 59% 36%,rgba(255,140,40,.35),transparent 12%)}
+.art::after{background:radial-gradient(ellipse 22% 5% at 32% 52%,rgba(246,223,160,.35),transparent 70%),radial-gradient(ellipse 22% 5% at 68% 52%,rgba(246,223,160,.35),transparent 70%)}
+.p:hover .art::before,.p:hover .art::after{opacity:1;animation:eyes var(--beat) ease-in-out infinite}
+@keyframes eyes{0%,100%{opacity:.7}45%{opacity:1}}
+.sig{display:grid;place-items:center;font:500 2.6rem ui-serif,Georgia,serif;color:var(--gold);text-shadow:0 0 24px var(--gold-glow);background:radial-gradient(circle at 50% 50%,rgba(255,122,42,.14),transparent 60%),#0b0716}
+.p:hover .sig{color:var(--gold-hi);text-shadow:0 0 40px rgba(255,170,80,.8)}
+.txt{padding:1rem 1.1rem 1.2rem}
+.txt h3{margin:0 0 .3rem;font-weight:500;color:var(--gold-hi);font-size:1.05rem}
+.txt p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.5}
+.txt .go{display:block;margin-top:.7rem;font:.7rem ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--lime);opacity:.75}
+.p.soon{opacity:.85}.back:focus-visible,.snd:focus-visible,.door button:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+@media (max-width:520px){main{padding-top:4.5rem}.tag{margin-bottom:2rem}}.p.soon .go{color:var(--muted)}
+.quiet{margin:4rem 0 0;color:var(--gold-hi);letter-spacing:.2em;font-size:.82rem;opacity:.7}
+.snd{position:fixed;right:1rem;top:1rem;z-index:5;font:.72rem ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--muted);background:rgba(12,8,22,.7);border:1px solid rgba(230,184,92,.25);border-radius:999px;padding:.45rem .85rem}
+.snd[aria-pressed="true"]{color:var(--gold-hi);border-color:var(--gold-glow)}
+.door{position:fixed;z-index:9;left:50%;bottom:2rem;transform:translateX(-50%);max-width:22rem;padding:1.1rem 1.4rem;border-radius:14px;background:rgba(12,8,22,.94);border:1px solid var(--gold-glow);box-shadow:0 0 40px var(--gold-soft);color:var(--gold-hi);text-align:center}
+.door .small{color:var(--muted);font-size:.85rem}.door button{background:none;border:1px solid var(--gold-glow);color:var(--gold);border-radius:999px;padding:.3rem .9rem}
+.eye{cursor:inherit}
+@media (prefers-reduced-motion:reduce){.aura,.wing,h1,.p:hover .art::before,.p:hover .art::after{animation:none}#sky,#trail{display:none}body{transition:none}body.arriving,body.leaving{filter:none}.p{transition:none}}
+</style>
+<link rel="stylesheet" href="soft-magic/soft-magic.css">
+</head>
+<body class="arriving">
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="aura" aria-hidden="true"></div>
+<div id="trail" aria-hidden="true"></div>
+<a class="back" href="index.html" data-nav="home">&larr; SOFT7</a>
+<button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Toggle ambient sound">SOUND · OFF</button>
+<main>
+<header>
+ <svg class="wing" viewBox="0 0 420 140" aria-hidden="true" fill="none" stroke="#E6B85C" stroke-width="1.1" stroke-linecap="round">
+  <path d="M210 120c-6-30-4-58 0-90 4 32 6 60 0 90z"/>
+  <path d="M204 70C170 40 120 26 60 30c40 10 74 26 100 50M204 82C160 62 110 60 40 74c46 0 92 8 122 22M206 94c-40-8-80 0-118 22 40-10 80-12 112-6"/>
+  <path d="M216 70c34-30 84-44 144-40-40 10-74 26-100 50M216 82c44-20 94-22 164-8-46 0-92 8-122 22M214 94c40-8 80 0 118 22-40-10-80-12-112-6"/>
+  <circle class="eye" id="eye" cx="210" cy="34" r="4" fill="#ff9a3a" stroke="none" style="pointer-events:all"/>
+ </svg>
+ <h1>Soft Magic</h1>
+ <p class="tag">every pulse is a door</p>
+</header>
+<section class="grid" aria-label="Soft7 projects">
+ <a class="p" href="index.html" data-nav="home"><div class="art"><img src="assets/reynard-soft7.svg" alt="Painterly angular tiger with forged-silver amulet, green potion and 777 buckle" loading="lazy"/></div><div class="txt"><h3>Reynard Soft7</h3><p>Seven Reynard cards on Robinhood Chain. The first circle.</p><span class="go">ENTER &rarr;</span></div></a>
+ <a class="p" href="https://tigerwillca.github.io/soft777/"><div class="art"><img src="assets/reynard-777.svg" alt="Painterly angular tiger with forged-silver amulet, pink potion and 777 buckle" loading="lazy"/></div><div class="txt"><h3>Reynard Soft7 777</h3><p>777 sealed cards on Robinhood Chain.</p><span class="go">ENTER &rarr;</span></div></a>
+ <a class="p" href="https://tigerwillca.github.io/ceres/"><div class="art"><img src="assets/ceres.svg" alt="Painterly angular tiger with forged-silver amulet, blue potion and 777 buckle" loading="lazy"/></div><div class="txt"><h3>Ceres</h3><p>Seventy-seven pieces. The first seven are Ceres: Soft7.</p><span class="go">ENTER &rarr;</span></div></a>
+ <a class="p" href="https://tigerwillca.github.io/fox-wizard-77/"><div class="art sig" aria-hidden="true">&#x1F98A;&#xFE0E;77</div><div class="txt"><h3>Fox Wizard 77</h3><p>The Fox Wizard 77 collection, in preview.</p><span class="go">ENTER &rarr;</span></div></a>
+ <a class="p" href="https://tigerwillca.github.io/door/"><div class="art sig" aria-hidden="true">&#9673;</div><div class="txt"><h3>Pulse · the door</h3><p>Where the pulse begins.</p><span class="go">ENTER &rarr;</span></div></a>
+ <a class="p" href="https://tigerwillca.github.io/signal/"><div class="art sig" aria-hidden="true">&#8767;</div><div class="txt"><h3>The Signal</h3><p>The signal runs deeper than seven.</p><span class="go">ENTER &rarr;</span></div></a>
+ <a class="p" href="https://tigerwillca.github.io/x/"><div class="art sig" aria-hidden="true">X</div><div class="txt"><h3>Project X</h3><p>Project X is waiting.</p><span class="go">ENTER &rarr;</span></div></a>
+ <div class="p soon"><div class="art sig" aria-hidden="true">0x777</div><div class="txt"><h3>The Seventh Gate</h3><p>Seven arcs. The gate is not open yet.</p><span class="go">SOON</span></div></div>
+</section>
+<p class="quiet">soft things grow strong</p>
+</main>
+<div id="door" class="door" role="dialog" aria-label="Secret door" hidden><p>You found the seventh door.</p><p class="small">The magic was always the kindness. Thank you for looking closer.</p><button type="button" id="doorClose">close</button></div>
+<script>
+(function(){
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches, BEAT=5600, t0=performance.now();
+requestAnimationFrame(function(){requestAnimationFrame(function(){document.body.classList.remove('arriving');});});setTimeout(function(){document.body.classList.remove('arriving');},120);
+addEventListener('pageshow',function(){document.body.classList.remove('leaving','arriving');});
+document.querySelectorAll('[data-nav="home"]').forEach(function(a){a.addEventListener('click',function(e){if(rm||e.metaKey||e.ctrlKey)return;e.preventDefault();document.body.classList.add('leaving');setTimeout(function(){location.href=a.getAttribute('href');},550);});});
+function beat(){var p=((performance.now()-t0)%BEAT)/BEAT;return Math.pow(Math.sin(Math.PI*Math.min(p/0.9,1)),2);}
+/* embers swell on the beat */
+if(!rm){var c=document.getElementById('sky'),x=c.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2),w,h,E=[];
+ function size(){w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';x.setTransform(dpr,0,0,dpr,0,0);}
+ addEventListener('resize',size);size();
+ var max=w<600?40:90;
+ function mk(y){return{x:Math.random()*w,y:y==null?h+10:y,vy:.15+Math.random()*.45,vx:(Math.random()-.5)*.2,r:.6+Math.random()*1.8,ph:Math.random()*6.28,l:Math.random()<.18}}
+ for(var i=0;i<max;i++)E.push(mk(Math.random()*h));
+ (function f(){var b=beat();x.clearRect(0,0,w,h);for(var i=0;i<E.length;i++){var p=E[i];p.y-=p.vy;p.ph+=.01;p.x+=p.vx+Math.sin(p.ph)*.15;if(p.y<-10)E[i]=p=mk();
+  var r=p.r*(1+b*.6),a=.25+b*.45;x.fillStyle=p.l?'rgba(204,255,0,'+a*.7+')':'rgba(255,150,70,'+a+')';x.shadowColor='rgba(255,140,60,.8)';x.shadowBlur=6+b*8;x.beginPath();x.arc(p.x,p.y,r,0,6.283);x.fill();}
+  requestAnimationFrame(f);})();
+ /* trailing glow dot */
+ var tr=document.getElementById('trail'),tx=0,ty=0,cx=0,cy=0,on=false;
+ if(matchMedia('(pointer:fine)').matches){addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;if(!on){on=true;cx=tx;cy=ty;tr.style.opacity=1;}});
+  document.addEventListener('pointerleave',function(){tr.style.opacity=0;on=false;});
+  (function g(){cx+=(tx-cx)*.14;cy+=(ty-cy)*.14;tr.style.transform='translate('+cx+'px,'+cy+'px) scale('+(1+beat()*.35)+')';requestAnimationFrame(g);})();}
+}
+/* optional sound: muted by default, WebAudio only */
+var ac=null,master=null,onS=false,btn=document.getElementById('snd');
+function start(){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=0;master.connect(ac.destination);
+ var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=700;lp.connect(master);
+ [110,164.81,220.5,329.6].forEach(function(f,i){var o=ac.createOscillator(),g=ac.createGain();o.type=i%2?'triangle':'sine';o.frequency.value=f;g.gain.value=.05/(i+1);
+  var l=ac.createOscillator(),lg=ac.createGain();l.frequency.value=1/5.6;lg.gain.value=.02/(i+1);l.connect(lg);lg.connect(g.gain);l.start();o.connect(g);g.connect(lp);o.start();});}
+function setS(v){onS=v;btn.setAttribute('aria-pressed',v);btn.textContent='SOUND · '+(v?'ON':'OFF');if(v&&!ac)start();if(ac){ac.resume();master.gain.setTargetAtTime(v?.5:0,ac.currentTime,.8);}}
+btn.onclick=function(){setS(!onS);};
+function chime(){if(!onS||!ac)return;var t=ac.currentTime;[880,1318.5].forEach(function(f,i){var o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05/(i+1),t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.6);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+1.7);});}
+document.querySelectorAll('.p').forEach(function(p){p.addEventListener('pointerenter',chime);});
+/* secret door: type 7 seven times, or click the phoenix eye 3 times */
+var d=document.getElementById('door'),n=0,k=0,kt;function open(){d.hidden=false;chime();}
+document.getElementById('doorClose').onclick=function(){d.hidden=true;};
+addEventListener('keydown',function(e){if(e.key==='7'){if(++n>=7){n=0;open();}}else n=0;});
+document.getElementById('eye').addEventListener('click',function(){clearTimeout(kt);kt=setTimeout(function(){k=0;},1200);if(++k>=3){k=0;open();}});
+})();
+</script>
+<script src="soft-magic/soft-magic.js"></script>
+</body>
+</html>
