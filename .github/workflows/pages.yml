@@ -14,6 +14,7 @@ jobs:
           base64 -d assets/phoenix-poster.jpg.b64 > site/assets/phoenix-poster.jpg
           for v in mp4 webm; do cat assets/phoenix.$v.b64.part* | base64 -d > site/assets/phoenix.$v; done
           cp pulse/index.html site/pulse/
+          mkdir -p site/world/img && cp world/*.html world/*.css world/*.js site/world/ && cp world/img/*.b64 site/world/img/
           base64 -d og.b64 > site/og.png && base64 -d typing.b64 > site/typing.gif
           cp site/og.png site/typing.gif site/pulse/
           for d in v/*/; do mkdir -p site/$d && cp $d/index.html site/$d && cat $d/pulse.mp4.b64.part* | base64 -d > site/${d}pulse.mp4; done
