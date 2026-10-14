@@ -16,6 +16,7 @@ jobs:
           cp pulse/index.html site/pulse/
           base64 -d og.b64 > site/og.png && base64 -d typing.b64 > site/typing.gif
           cp site/og.png site/typing.gif site/pulse/
+          for d in v/*/; do mkdir -p site/$d && cp $d/index.html site/$d && cat $d/pulse.mp4.b64.part* | base64 -d > site/${d}pulse.mp4; done
           touch site/.nojekyll
           cd site && git init -b gh-pages && git add -A
           git -c user.name=pages -c user.email=pages@users.noreply.github.com commit -m site
