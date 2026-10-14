@@ -7,7 +7,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          mkdir site && cp index.html site/ && base64 -d og.b64 > site/og.png && base64 -d typing.b64 > site/typing.gif && touch site/.nojekyll
+          mkdir -p site/assets site/soft-magic site/pulse
+          cp index.html soft-magic.html site/
+          cp soft-magic/* site/soft-magic/
+          cp assets/*.svg site/assets/
+          base64 -d assets/phoenix-poster.jpg.b64 > site/assets/phoenix-poster.jpg
+          for v in mp4 webm; do cat assets/phoenix.$v.b64.part* | base64 -d > site/assets/phoenix.$v; done
+          cp pulse/index.html site/pulse/
+          base64 -d og.b64 > site/og.png && base64 -d typing.b64 > site/typing.gif
+          cp site/og.png site/typing.gif site/pulse/
+          touch site/.nojekyll
           cd site && git init -b gh-pages && git add -A
           git -c user.name=pages -c user.email=pages@users.noreply.github.com commit -m site
           git push -f https://x-access-token:${{ github.token }}@github.com/${{ github.repository }} gh-pages
